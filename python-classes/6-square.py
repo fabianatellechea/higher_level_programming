@@ -6,6 +6,18 @@ class Square:
     """ Coordinates of a square """
 
     def __init__(self, size=0, position=(0, 0)):
+
+        if type(size) is not int:
+            raise TypeError("size must be an integer")
+        if size < 0:
+            raise ValueError("size must be >= 0")
+        if type(position) == tuple and len(position) == 2:
+            for value in position:
+                if type(value) != int or value < 0:
+                    raise TypeError(
+                        "position must be a tuple of 2 positive integers")
+        else:
+            raise TypeError("position must be a tuple of 2 positive integers")
         self.__size = size
         self.__position = position
 
@@ -43,8 +55,11 @@ class Square:
     def my_print(self):
         if self.__size == 0:
             print()
-        for i in range(self.__position[1]):
-            print()
+
+        if self.__position[1] > 0 and self.__size > 0:
+            for i in range(self.__position[1]):
+                print()
+
         for i in range(self.__size):
             print(' ' * self.__position[0], end="")
             print('#' * self.__size)
