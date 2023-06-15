@@ -4,11 +4,13 @@
 
 class Rectangle:
     """ defines a rectangle """
+    number_of_instances = 0
 
     def __init__(self, width=0, height=0):
 
         self.__width = width
         self.__height = height
+        Rectangle.number_of_instances += 1
 
         if type(self.__width) is not int:
             raise TypeError("width must be an integer")
@@ -64,3 +66,4 @@ class Rectangle:
 
     def __del__(self):
         print("Bye rectangle...")
+        Rectangle.number_of_instances -= 1
